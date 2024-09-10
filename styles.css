@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #24384c;
+}
+.navbar {
+    background-color: #24384c;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar img {
+    height: 60px;
+}
+.nav-links {
+    display: flex;
+}
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+.content {
+    padding: 2rem;
+    min-height: calc(100vh - 160px);
+}
+h1 {
+    color: #d87a1e;
+}
+.footer {
+    background-color: #24384c;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
