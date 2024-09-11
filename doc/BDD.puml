@@ -1,3 +1,4 @@
+@startuml
 
 class Metier{
    nom: string
@@ -6,3 +7,5 @@ class Metier{
    confort: int
    creativite: int
 }
+
+@enduml

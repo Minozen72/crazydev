@@ -25,6 +25,26 @@ app.get('/data', async (req, res) => {
     }
 });
 
+app.get('/data/search', async (req, res) => {
+    const { securite, confort, creativite } = req.query; // Récupérer les critères depuis les paramètres de requête
+    try {
+        const collection = db.collection('metier'); // Utilisation de la collection 'metier'
+        const data = await collection.findOne({
+            securite: parseInt(securite), // Convertir en entier
+            confort: parseInt(confort),     // Convertir en entier
+            creativite: parseInt(creativite) // Convertir en entier
+        });
+        
+        if (data) {
+            res.json(data);
+        } else {
+            res.status(404).send('Objet non trouvé');
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 app.post('/data', async (req, res) => {
     try {
         const collection = db.collection('metier'); // Utilisation de la collection 'metier'
