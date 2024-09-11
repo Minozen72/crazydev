@@ -15,7 +15,7 @@ connectDB().then(database => {
     });
 });
 
-app.get('/data', async (req, res) => {
+app.get('/metier', async (req, res) => {
     try {
         const collection = db.collection('metier'); // Utilisation de la collection 'metier'
         const data = await collection.find({}).toArray();
@@ -25,7 +25,7 @@ app.get('/data', async (req, res) => {
     }
 });
 
-app.get('/data/search', async (req, res) => {
+app.get('/metier/search', async (req, res) => {
     const { securite, confort, creativite } = req.query; // Récupérer les critères depuis les paramètres de requête
     try {
         const collection = db.collection('metier'); // Utilisation de la collection 'metier'
@@ -45,7 +45,17 @@ app.get('/data/search', async (req, res) => {
     }
 });
 
-app.post('/data', async (req, res) => {
+app.get('/questions', async (req, res) => {
+    try {
+        const collection = db.collection('question'); // Utilisation de la collection 'question'
+        const data = await collection.find({}).toArray();
+        res.json(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+app.post('/metier', async (req, res) => {
     try {
         const collection = db.collection('metier'); // Utilisation de la collection 'metier'
         const metier = {
