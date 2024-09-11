@@ -49,9 +49,9 @@ nextBtn.addEventListener('click', () => {
             alert("Veuillez sélectionner une réponse avant de continuer.");
         }
     } else {
-        // Fermer le popup et rediriger vers la page d'accueil
+        // Fermer le popup et rediriger vers la page reponse
         popup.style.display = 'none';
-        window.location.href = '#home';
+        window.location.href = 'reponse.html';
     }
 });
 
