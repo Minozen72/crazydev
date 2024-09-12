@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./db');
 
 const app = express();
 const port = 3000;
 
+app.use(cors()); // Ajoute CORS pour toutes les requêtes
 app.use(express.json());
 
 let db;
@@ -17,7 +19,7 @@ connectDB().then(database => {
 
 app.get('/metier', async (req, res) => {
     try {
-        const collection = db.collection('metier'); // Utilisation de la collection 'metier'
+        const collection = db.collection('metier');
         const data = await collection.find({}).toArray();
         res.json(data);
     } catch (err) {
@@ -26,19 +28,20 @@ app.get('/metier', async (req, res) => {
 });
 
 app.get('/metier/search', async (req, res) => {
-    const { securite, confort, creativite } = req.query; // Récupérer les critères depuis les paramètres de requête
+    const { securite, confort, creativite } = req.query;
+    const query = {};
+
+    if (securite) query.securite = parseInt(securite);
+    if (confort) query.confort = parseInt(confort);
+    if (creativite) query.creativite = parseInt(creativite);
+
     try {
-        const collection = db.collection('metier'); // Utilisation de la collection 'metier'
-        const data = await collection.findOne({
-            securite: parseInt(securite), // Convertir en entier
-            confort: parseInt(confort),     // Convertir en entier
-            creativite: parseInt(creativite) // Convertir en entier
-        });
-        
-        if (data) {
+        const collection = db.collection('metier');
+        const data = await collection.find(query).toArray();
+        if (data.length > 0) {
             res.json(data);
         } else {
-            res.status(404).send('Objet non trouvé');
+            res.status(404).send('Aucun métier trouvé');
         }
     } catch (err) {
         res.status(500).send(err);
@@ -47,7 +50,7 @@ app.get('/metier/search', async (req, res) => {
 
 app.get('/questions', async (req, res) => {
     try {
-        const collection = db.collection('question'); // Utilisation de la collection 'question'
+        const collection = db.collection('question');
         const data = await collection.find({}).toArray();
         res.json(data);
     } catch (err) {
@@ -56,15 +59,22 @@ app.get('/questions', async (req, res) => {
 });
 
 app.post('/metier', async (req, res) => {
+    const { nom, description, securite, confort, creativite } = req.body;
+
+    if (!nom || !description || !securite || !confort || !creativite) {
+        return res.status(400).send('Tous les champs sont requis');
+    }
+
+    const metier = {
+        nom,
+        description,
+        securite: parseInt(securite),
+        confort: parseInt(confort),
+        creativite: parseInt(creativite)
+    };
+
     try {
-        const collection = db.collection('metier'); // Utilisation de la collection 'metier'
-        const metier = {
-            nom: req.body.nom,
-            description: req.body.description,
-            securite: req.body.securite,
-            confort: req.body.confort,
-            creativite: req.body.creativite
-        };
+        const collection = db.collection('metier');
         const result = await collection.insertOne(metier);
         res.json(result);
     } catch (err) {

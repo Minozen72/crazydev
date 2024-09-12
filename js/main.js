@@ -1,10 +1,33 @@
-const questions = [
-    "Je suis souvent le premier à proposer de nouvelles idées.",
-    "J'aime prendre des risques calculés.",
-    "Je préfère travailler en équipe plutôt que seul.",
-    "Je gère bien le stress et la pression.",
-    "J'ai tendance à planifier à l'avance plutôt que d'improviser."
-];
+
+
+
+
+questions = [];
+
+
+fetch('http://localhost:3000/questions/', {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json', // Pour être explicite sur ce qu'on attend en retour
+    }
+})
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to fetch. Status: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => { 
+        data.forEach(item => {
+        questions.push(item.libelle);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+
+
 
 const choices = [1, 2, 3, 4, 5];
 
