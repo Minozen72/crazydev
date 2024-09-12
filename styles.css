@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "SUSE", sans-serif;
     margin: 0;
     padding: 0;
     color: #24384c;
@@ -17,7 +23,7 @@ h1 {
     align-items: center;
 }
 .navbar img {
-    height: 100px;
+    height: 120px;
 }
 .nav-links {
     display: flex;
@@ -39,7 +45,6 @@ h1 {
     padding: 1rem;
     position: relative;
     bottom: 0;
-    width: 100%;
 }
 
 /* Popup question */
@@ -61,8 +66,7 @@ h1 {
     padding: 2rem;
     border-radius: 5px;
     text-align: center;
-    max-width: 100%;
-    max-height: 100%;
+    width: 500px;
     overflow-y: auto;
     position: relative;
 }
@@ -138,3 +142,25 @@ h1 {
 .styled-button:hover {
     background-color: #c06c1b;
 }
+
+/* page réponse */
+
+.reponse-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.reponse-metier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#Description-metier{
+    
+}
+    
