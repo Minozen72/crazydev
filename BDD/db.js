@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 async function connectDB() {
-    const uri = "mongodb://localhost:27017/local"; // Connexion à la base de données 'local'
+    const uri = "mongodb+srv://enzotessier:DjO3bR7V1dUluZ9Y@capeless-careers.ybowa.mongodb.net/Capeless-Careers"; // Connexion à la base de données 'local'
     const client = new MongoClient(uri);
 
     try {
