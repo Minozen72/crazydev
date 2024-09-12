@@ -14,7 +14,6 @@ body {
 h1 {
     color: #d87a1e;
 }
-
 .navbar {
     background-color: #24384c;
     padding: 1rem;
@@ -32,6 +31,11 @@ h1 {
     color: white;
     text-decoration: none;
     margin-left: 1rem;
+    transition: color 0.3s ease;
+    font-size: 1.2em;
+}
+.nav-links a:hover {
+    color: #d87a1e; /* Same color as h1 for consistency */
 }
 .content {
     padding: 2rem;
@@ -160,7 +164,13 @@ h1 {
     align-items: center;
 }
 
-#Description-metier{
-    
+#nom-metier {
+    font-size: 3em;
+    color: #d87a1e;
+
 }
-    
+#description-metier {
+    font-size: 1.5em;
+    color: #333;
+
+}
