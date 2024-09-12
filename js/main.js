@@ -158,6 +158,8 @@ if (document.location.pathname.includes('index.html')) {
                         localStorage.setItem("metier", JSON.stringify(item));
 
                     });
+                    popup.style.display = 'none';
+                    window.location.href = 'reponse.html';
                     
                 })
                 .catch(error => {
@@ -165,8 +167,7 @@ if (document.location.pathname.includes('index.html')) {
                     console.error('Fetch error:', error);
                 });
 
-            popup.style.display = 'none';
-            window.location.href = 'reponse.html';
+            
         }
     });
 
